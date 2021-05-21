@@ -2,8 +2,8 @@
   <div>
 
     <!--Stats cards-->
-    <!-- <div class="row">
-      <div class="col-md-6 col-xl-3" v-for="stats in statsCards" :key="stats.title">
+    <div class="row">
+      <!-- <div class="col-md-6 col-xl-3" v-for="stats in statsCards" :key="stats.title">
         <stats-card>
           <div class="icon-big text-center" :class="`icon-${stats.type}`" slot="header">
             <i :class="stats.icon"></i>
@@ -16,8 +16,13 @@
             <i :class="stats.footerIcon"></i> {{stats.footerText}}
           </div>
         </stats-card>
-      </div>
-    </div> -->
+      </div> -->
+      <form class="d-flex mb-5 ml-3 col-6 ">
+        <input class="form-control me-2 border border-dark input-md" type="search" placeholder="Search Customer" aria-label="Search">
+        <div class="col-1"></div>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
 
     <!--Charts-->
     <div class="row">
