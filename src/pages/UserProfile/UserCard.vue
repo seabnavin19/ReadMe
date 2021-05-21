@@ -1,23 +1,23 @@
 <template>
   <card class="card-user">
-    <div slot="image">
+    <!-- <div slot="image">
       <img src="@/assets/img/background.jpg" alt="...">
-    </div>
+    </div> -->
     <div>
       <div class="author">
-        <img class="avatar border-white" src="@/assets/img/faces/face-2.jpg" alt="...">
-        <h4 class="title">Chet Faker
+        <img class="avatar border-white" src="@/assets/img/faces/huameng.jpg" alt="...">
+        <h4 class="title">HuaMeng Lim
           <br>
           <a href="#">
-            <small>@chetfaker</small>
+            <small>@huamenglim</small>
           </a>
         </h4>
       </div>
-      <p class="description text-center">
+      <!-- <p class="description text-center">
         "I like the way you work it
         <br> No diggity
         <br> I wanna bag it up"
-      </p>
+      </p> -->
     </div>
     <hr>
     <div class="text-center">
@@ -36,18 +36,19 @@
 export default {
   data() {
     return {
+      // accountStatus: "Active",
       details: [
         {
-          title: "12",
-          subTitle: "Files"
+          title: "19",
+          subTitle: "Age"
         },
         {
-          title: "2GB",
-          subTitle: "Used"
+          title: "Male",
+          subTitle: "Gender"
         },
         {
-          title: "24,6$",
-          subTitle: "Spent"
+          title:"Active",
+          subTitle: "Status"
         }
       ]
     };
