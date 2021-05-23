@@ -1,64 +1,51 @@
 <template>
  
   <form>
-    <table>
-      <tr>
-        <th colspan="2">description</th>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Descriptions"></textarea>
-        </td>
-      </tr>
-      <tr>
-        <th>Age</th>
-        <th>Group</th>
-      </tr>
-      <tr>
-        <td>
-          <input type="text" id="example1" class="form-control">
-        </td>
-        <td>
-          <select class="browser-default custom-select">
-            <option selected>Group</option>
-            <option value="1">Group 1</option>
-            <option value="2">Group 2</option>
-            <option value="3">Group 3</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <th>Services</th>
-        <th>Gender</th>
-      </tr>
-      <tr>
-        <td>
-            <select class="browser-default custom-select">
-              <option selected>Services</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-        </td>
-        <td>
-            <select class="browser-default custom-select">
-              <option selected>Gender</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-        </td>
-      </tr>
-      <tr>
-        <th>Fee</th>
-      </tr>
-      <tr>
-        <td>
-            <input type="text" id="example1" class="form-control">
-        </td>
-      </tr>
-    </table>
-  </form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Email</label>
+      <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Password</label>
+      <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">Address</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+  </div>
+  <div class="form-group">
+    <label for="inputAddress2">Address 2</label>
+    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">City</label>
+      <input type="text" class="form-control" id="inputCity">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputState">State</label>
+      <select id="inputState" class="form-control">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">Zip</label>
+      <input type="text" class="form-control" id="inputZip">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Check me out
+      </label>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Sign in</button>
+</form>
   
 </template>
 <style>
@@ -69,7 +56,7 @@
 form{
   background-color:rgb(241, 236, 236);
   padding: 5%;
-  box-shadow: 1px 1px 2px;
+  
 }
 table{
   width: 100%;

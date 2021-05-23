@@ -3,7 +3,7 @@
 
     <!--Stats cards-->
     
-    <div class="row">
+    <div  >
       <!-- <div class="col-md-6 col-xl-3" v-for="stats in statsCards" :key="stats.title">
         <stats-card>
           <div class="icon-big text-center" :class="`icon-${stats.type}`" slot="header">
@@ -18,10 +18,10 @@
           </div>
         </stats-card>
       </div> -->
-      <form class="d-flex mb-5 ml-3 col-6 bg-light border ">
+      <form class="d-flex mb-5 ml-3 col-6 jumbotron ">
         <input class="form-control me-2 border border-dark input-md " v-model="search" type="search" placeholder="Search Customer" aria-label="Search">
         <div class="col-1"></div>
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn btn-outline-success" type="submit" > Search</button>
       </form>
     </div>
     
@@ -41,7 +41,7 @@
       <th scope="row">{{post.id}}</th>
       <td>{{post.name}}</td>
 
-      <td><button class="btn btn-dark">View</button></td>
+      <td><button class="btn btn-dark"> <router-link :to="{ name: 'stats', params: { id:post.id,name:post.name } }">View</router-link></button></td>
 
       <!-- <td>Otto</td>
       <td>@mdo</td> -->
@@ -113,8 +113,12 @@
 <script>
 import { StatsCard, ChartCard } from "@/components/index";
 import Chartist from 'chartist';
+import db from '../components/firebaseInit'
+
+
+
 class Post {
-  constructor(id, name, author, img) {
+  constructor(id, name) {
     this.id = id;
     this.name = name
     // this. = author;
@@ -126,18 +130,45 @@ export default {
     StatsCard,
     ChartCard
   },
+
   computed: {
     filteredList() {
       return this.postList.filter(post => {
+        console.log(post)
         return post.id.toLowerCase().includes(this.search.toLowerCase())
       })
+
+     
+     
+      
     }
+  },
+  mounted() {
+    db.collection('Bank').get().then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            var i;
+            var l=[]
+            for(i in doc.data()){
+              console.log(doc.data()[i])
+              this.sdata=new Post(doc.data()[i].AccountId,doc.data()[i].name)
+              this.postList.push(this.sdata)
+              console.log(i)
+
+            }
+            // this.sdata=doc.data()
+            // console.log(this.sdata)
+
+            
+      
+          })
+        })
   },
   /**
    * Chart data used to render stats, charts. Should be replaced with server data
    */
   data() {
     return {
+      sdata:'',
       
       statsCards: [
         {
@@ -242,64 +273,10 @@ export default {
         },
         options: {}
       },
-    search: '',
-    
+     search: '',
     postList : [
-      new Post(
-        'Vue.js', 
-        'https://vuejs.org/', 
-        'Chris', 
-        'https://vuejs.org//images/logo.png'
-      ),
-      new Post(
-        'React.js', 
-        'https://facebook.github.io/react/', 
-        'Tim',
-        'https://daynin.github.io/clojurescript-presentation/img/react-logo.png'
-      ),
-      new Post(
-        'Angular.js', 
-        'https://angularjs.org/', 
-        'Sam', 
-        'https://angularjs.org/img/ng-logo.png'
-      ),
-      new Post(
-        'Ember.js', 
-        'http://emberjs.com/', 
-        'Rachel',
-        'http://www.gravatar.com/avatar/0cf15665a9146ba852bf042b0652780a?s=200'
-      ),
-      new Post(
-        'Meteor.js', 
-        'https://www.meteor.com/', 
-        'Chris', 
-        'http://hacktivist.in/introduction-to-nodejs-mongodb-meteor/img/meteor.png'
-      ),
-      new Post(
-        'Aurelia', 
-        'http://aurelia.io/', 
-        'Tim',
-        'https://cdn.auth0.com/blog/aurelia-logo.png'
-      ),
-      new Post(
-        'Node.js', 
-        'https://nodejs.org/en/', 
-        'A. A. Ron',
-        'https://code-maven.com/img/node.png'
-      ),
-      new Post(
-        'Pusher', 
-        'https://pusher.com/', 
-        'Alex', 
-        'https://avatars1.githubusercontent.com/u/739550?v=3&s=400'
-      ),
-      new Post(
-        'Feathers.js', 
-        'http://feathersjs.com/', 
-        'Chuck',
-        'https://cdn.worldvectorlogo.com/logos/feathersjs.svg'
-      ),
-],
+      
+]
 
     };
   },
