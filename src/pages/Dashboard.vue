@@ -3,6 +3,7 @@
 
     <!--Stats cards-->
     
+    <div  >
       <!-- <div class="col-md-6 col-xl-3" v-for="stats in statsCards" :key="stats.title">
         <stats-card>
           <div class="icon-big text-center" :class="`icon-${stats.type}`" slot="header">
@@ -17,14 +18,12 @@
           </div>
         </stats-card>
       </div> -->
-      <div class="d-flex col-6 m-3 ">
-        <input class="form-control  border border-dark  " v-model="search" type="search" placeholder="Search Customer" aria-label="Search">
+      <form class="d-flex mb-5 ml-3 col-6 jumbotron ">
+        <input class="form-control me-2 border border-dark input-md " v-model="search" type="search" placeholder="Search Customer" aria-label="Search">
         <div class="col-1"></div>
-        <p-button type="info" round class="col-3"                   >
-            Search
-          </p-button>
-        <!-- <button class="btn btn-outline-success" type="submit" > Search</button> -->
-      </div>
+        <button class="btn btn-outline-success" type="submit" > Search</button>
+      </form>
+    </div>
     
     <table class="table table-success table-striped h-25 ">
   <thead >
@@ -48,14 +47,7 @@
       <td>@mdo</td> -->
     </tr>
     <!-- <tr v-if=""></tr> -->
-  </tbody>
-  <tbody v-if="filteredList.length==0">
-    <tr class="text-center">
-      <td >Not Found any Customer</td>
-      <td ></td>
-    </tr>
-
-
+       
   </tbody>
 </table>
    
