@@ -44,7 +44,7 @@
       <input type="number" class="form-control" id="inputFee" placeholder="$" >
     </div>
   </div>
-  <button type="submit" class="btn btn-primary">Sign in</button>
+  <button type="submit" class="btn btn-primary">submit</button>
 </form>
   
 </template>
@@ -56,7 +56,7 @@
 form{
   background-color:rgb(241, 236, 236);
   padding: 5%;
-  
+  box-shadow: rgb(201, 198, 198) 1px 1px 5px;
 }
 table{
   width: 100%;
