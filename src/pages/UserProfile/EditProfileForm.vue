@@ -3,7 +3,7 @@
     <div>
       <form @submit.prevent>
         <div class="row">
-          <div class="col-md-5">
+          <div class="col-md-6">
             <!-- <fg-input type="text"
                       label="Company"
                       :disabled="true"
@@ -16,50 +16,79 @@
                       v-model="user.username">
             </fg-input>
           </div>
-          <div class="col-md-3">
+          <!-- <div class="col-md-4">
 
             <fg-input type="number"
                       label="Phone Number"
                       placeholder="Phone Number"
                       v-model="user.phoneNumber">
             </fg-input>
-          </div>
-          <div class="col-md-4">
-            <fg-input type="number"
+          </div> -->
+          <div class="col-md-6">
+            <fg-input type="text"
                       label="Account Number"
                       placeholder="Account Number"
                       v-model="user.accountNumber">
             </fg-input>
           </div>
         </div>
-
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-6">
             <fg-input type="text"
+                      label="Cards obtained"
+                      placeholder="Number of cards"
+                      v-model='user.has_credit_card'>
+            </fg-input>
+          </div>
+          <div class="col-md-6">
+            <fg-input type="text"
+                      label="Year with Bank"
+                      placeholder="Tenure"
+                      v-model="user.tenure">
+            </fg-input>
+          </div>
+          <!-- <div class="col-md-4">
+            <fg-input type="number"
+                      label="Electricity Bill"
+                      placeholder="Electricity Bill"
+                      v-model="user.billETC">
+            </fg-input>
+          </div> -->
+          <!-- <div class="col-md-4">
+            <fg-input type="number"
+                      label="Clean Water Bill"
+                      placeholder="Clean Water Bill"
+                      v-model="user.billCleanWater">
+            </fg-input>
+          </div> -->
+        </div>
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-4"> -->
+            <!-- <fg-input type="text"
                       label="First Name"
                       placeholder="First Name"
                       v-model="user.firstName">
             </fg-input>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <fg-input type="text"
                       label="Last Name"
                       placeholder="Last Name"
                       v-model="user.lastName">
             </fg-input>
-          </div>
-          <div class="col-md-6">
-            <fg-input type="text"
-                      label="Address"
-                      placeholder="Address"
-                      v-model="user.address">
+          </div> -->
+          <!-- <div class="col-md-4">
+            <fg-input type="number"
+                      label="Income"
+                      placeholder="Income"
+                      v-model="user.salary">
             </fg-input>
-          </div>
-        </div>
+          </div> -->
+        <!-- </div> -->
 
         <div class="row">
           <div class="col-md-4">
-            <fg-input type="number"
+            <fg-input type="text"
                       label="Balance"
                       placeholder="Balance"
                       v-model="user.balance">
@@ -73,7 +102,7 @@
             </fg-input>
           </div>
                     <div class="col-md-4">
-            <fg-input type="number"
+            <fg-input type="text"
                       label="Number of Product"
                       placeholder="Number of product"
                       v-model="user.numberOfProduct">
@@ -81,37 +110,44 @@
           </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-md-4">
             <fg-input type="number"
-                      label="Salary/Income"
-                      placeholder="Income"
-                      v-model="user.salary">
+                      label="Cards obtained"
+                      placeholder="Number of cards"
+                      v-model="user.has_credit_card">
             </fg-input>
           </div>
           <div class="col-md-4">
+            <fg-input type="text"
+                      label="Year with Bank"
+                      placeholder="Tenure"
+                      v-model="user.tenure">
+            </fg-input>
+          </div> -->
+          <!-- <div class="col-md-4">
             <fg-input type="number"
                       label="Electricity Bill"
                       placeholder="Electricity Bill"
                       v-model="user.billETC">
             </fg-input>
-          </div>
-          <div class="col-md-4">
+          </div> -->
+          <!-- <div class="col-md-4">
             <fg-input type="number"
                       label="Clean Water Bill"
                       placeholder="Clean Water Bill"
                       v-model="user.billCleanWater">
             </fg-input>
-          </div>
-        </div>
+          </div> -->
+        <!-- </div> -->
 
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <label> Customer Description</label>
+              <label> Customer's Special Offer</label>
               <textarea rows="5" class="form-control border-input"
-                        placeholder="Here can be your description"
-                        v-model="user.customerDescription">
+                        placeholder="Special Offer"
+                        v-model="user.specialOffer">
 
               </textarea>
             </div>
@@ -129,10 +165,10 @@
     </div>
   </card>
 </template>
+
 <script>
+
 import db from "../../components/firebaseInit"
-
-
 
 export default {
   data() {
@@ -151,17 +187,15 @@ export default {
         // ITT_maxFee: null,
         // ITT_cableFee: null,
         salary: null,
-        billETC: null,
-        billCleanWater: null,
-        phoneNumber: "087555087",
-        username: "Huameng Lim",
-        accountNumber: "1101901058",
-        firstName: "Lim",
-        lastName: "HuaMeng",
-        address: "Kirirom Institute of Technology, Kompong Speu, Cambodia",
-        city: "Kompongspeu",
-        postalCode: "12100",
-        customerDescription: 'A second year student majoring in software Engineering.'
+        // billEDC: null,
+        // billCleanWater: null,
+        // phoneNumber: "087555087",
+        username: null,
+        accountNumber: null,
+        firstName: null,
+        lastName: null,
+        specialOffer: null,
+        tenure: null,
       }
     };
   },
@@ -186,11 +220,17 @@ export default {
               // this.sdata=new Post(doc.data()[i].AccountId,doc.data()[i].name)
               // this.postList.push(this.sdata)
               
-              if(doc.data()[i].AccountId==this.user.accountNumber){
-                var customer=doc.data()[i]
-                this.user.username=customer.name
-                this.user.gender=customer.Gender
-                this.user.age=customer.Age
+              if(doc.data()[i].AccountId == this.user.accountNumber){
+                var customer = doc.data()[i]
+                this.user.username = customer.name
+                // this.user.gender = customer.Gender
+                // this.user.age = customer.Age
+                this.user.numberOfProduct = customer.NumOfProducts
+                this.user.balance = customer.Balance + " $"
+                this.user.has_credit_card = customer.HasCrCard 
+                this.user.salary = customer.EstimatedSalary
+                this.user.tenure = customer.Tenure + " year"
+
                 
                 // console.log
               }
