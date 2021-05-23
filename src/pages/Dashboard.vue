@@ -1,6 +1,7 @@
 <template>
   <div>
-
+  
+  
     <!--Stats cards-->
     
     <div  >
@@ -18,11 +19,14 @@
           </div>
         </stats-card>
       </div> -->
-      <form class="d-flex mb-5 ml-3 col-6 jumbotron ">
-        <input class="form-control me-2 border border-dark input-md " v-model="search" type="search" placeholder="Search Customer" aria-label="Search">
+      
+       <h4>Search For Customer</h4>
+      <div class="d-flex col-6 mb-3 ">
+       
+        <input class="form-control  border border-dark" v-model="search" type="search" placeholder="Search Customer" aria-label="Search">
         <div class="col-1"></div>
         <button class="btn btn-outline-success" type="submit" > Search</button>
-      </form>
+      </div>
     </div>
     
     <table class="table table-success table-striped h-25 ">
@@ -113,7 +117,9 @@
 <script>
 import { StatsCard, ChartCard } from "@/components/index";
 import Chartist from 'chartist';
-import db from '../components/firebaseInit'
+import db from '../components/firebaseInit';
+import UserCard from "./UserProfile/UserCard.vue";
+
 
 
 
@@ -128,7 +134,9 @@ class Post {
 export default {
   components: {
     StatsCard,
-    ChartCard
+    ChartCard,
+     UserCard,
+    
   },
 
   computed: {
