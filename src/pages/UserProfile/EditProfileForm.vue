@@ -130,10 +130,15 @@
   </card>
 </template>
 <script>
+import db from "../../components/firebaseInit"
+
+
+
 export default {
   data() {
     return {
       user: {
+        age:null,
         gender:null,
         group: null,
         balance: null,
@@ -163,8 +168,45 @@ export default {
   methods: {
     updateProfile() {
       alert("Your data: " + JSON.stringify(this.user));
+     
     }
-  }
+  },
+  mounted() {
+    if(this.$route.params.id){
+      this.user.accountNumber = this.$route.params.id;
+    }
+    db.collection('Bank').get().then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+          
+            console.log(doc)
+            var i;
+            var l=[]
+            for(i in doc.data()){
+              // console.log(doc.data()[i])
+              // this.sdata=new Post(doc.data()[i].AccountId,doc.data()[i].name)
+              // this.postList.push(this.sdata)
+              
+              if(doc.data()[i].AccountId==this.user.accountNumber){
+                var customer=doc.data()[i]
+                this.user.username=customer.name
+                this.user.gender=customer.Gender
+                this.user.age=customer.Age
+                
+                // console.log
+              }
+
+
+            }
+            
+
+            
+      
+          })
+        })
+     
+      
+    
+  },
 };
 </script>
 <style>
