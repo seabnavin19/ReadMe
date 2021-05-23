@@ -1,90 +1,77 @@
 <template>
-    <div class="row">
-      <div class="col-12">
-        <card :title="table1.title" :subTitle="table1.subTitle">
-          <div slot="raw-content" class="table-responsive">
-            <paper-table :data="table1.data" :columns="table1.columns">
-
-            </paper-table>
-          </div>
-        </card>
-      </div>
-
-      <div class="col-12">
-        <card class="card-plain">
-          <div class="table-full-width table-responsive">
-            <paper-table type="hover" :title="table2.title" :sub-title="table2.subTitle" :data="table2.data"
-                         :columns="table2.columns">
-
-            </paper-table>
-          </div>
-        </card>
-      </div>
-
-    </div>
+ 
+  <form>
+    <table>
+      <tr>
+        <th colspan="2">description</th>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Descriptions"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <th>Age</th>
+        <th>Group</th>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" id="example1" class="form-control">
+        </td>
+        <td>
+          <select class="browser-default custom-select">
+            <option selected>Group</option>
+            <option value="1">Group 1</option>
+            <option value="2">Group 2</option>
+            <option value="3">Group 3</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>Services</th>
+        <th>Gender</th>
+      </tr>
+      <tr>
+        <td>
+            <select class="browser-default custom-select">
+              <option selected>Services</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+        </td>
+        <td>
+            <select class="browser-default custom-select">
+              <option selected>Gender</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+        </td>
+      </tr>
+      <tr>
+        <th>Fee</th>
+      </tr>
+      <tr>
+        <td>
+            <input type="text" id="example1" class="form-control">
+        </td>
+      </tr>
+    </table>
+  </form>
+  
 </template>
-<script>
-import { PaperTable } from "@/components";
-const tableColumns = ["Id", "Name", "Salary", "Country", "City"];
-const tableData = [
-  {
-    id: 1,
-    name: "Dakota Rice",
-    salary: "$36.738",
-    country: "Niger",
-    city: "Oud-Turnhout"
-  },
-  {
-    id: 2,
-    name: "Minerva Hooper",
-    salary: "$23,789",
-    country: "Curaçao",
-    city: "Sinaai-Waas"
-  },
-  {
-    id: 3,
-    name: "Sage Rodriguez",
-    salary: "$56,142",
-    country: "Netherlands",
-    city: "Baileux"
-  },
-  {
-    id: 4,
-    name: "Philip Chaney",
-    salary: "$38,735",
-    country: "Korea, South",
-    city: "Overland Park"
-  },
-  {
-    id: 5,
-    name: "Doris Greene",
-    salary: "$63,542",
-    country: "Malawi",
-    city: "Feldkirchen in Kärnten"
-  }
-];
-
-export default {
-  components: {
-    PaperTable
-  },
-  data() {
-    return {
-      table1: {
-        title: "Stripped Table",
-        subTitle: "Here is a subtitle for this table",
-        columns: [...tableColumns],
-        data: [...tableData]
-      },
-      table2: {
-        title: "Table on Plain Background",
-        subTitle: "Here is a subtitle for this table",
-        columns: [...tableColumns],
-        data: [...tableData]
-      }
-    };
-  }
-};
-</script>
 <style>
+*{
+  margin: 0;
+  padding: 0;
+}
+form{
+  background-color:rgb(241, 236, 236);
+  padding: 5%;
+  box-shadow: 1px 1px 2px;
+}
+table{
+  width: 100%;
+}
 </style>

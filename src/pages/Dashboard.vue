@@ -18,7 +18,7 @@
           </div>
         </stats-card>
       </div> -->
-      <form class="d-flex mb-5 ml-3 col-6 ">
+      <form class="d-flex mb-5 ml-3 col-6 bg-light border ">
         <input class="form-control me-2 border border-dark input-md " v-model="search" type="search" placeholder="Search Customer" aria-label="Search">
         <div class="col-1"></div>
         <button class="btn btn-outline-success" type="submit">Search</button>
@@ -46,11 +46,12 @@
       <!-- <td>Otto</td>
       <td>@mdo</td> -->
     </tr>
-    <tr v-if=""></tr>
+    <!-- <tr v-if=""></tr> -->
        
   </tbody>
 </table>
    
+    <!--Charts hello-->
     <div class="row">
     
     </div>
