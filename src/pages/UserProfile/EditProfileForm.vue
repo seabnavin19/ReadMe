@@ -1,5 +1,5 @@
 <template>
-  <card class="card" title="Customer's Profile">
+  <card class="card-user" title="Customer's Profile">
     <div>
       <form @submit.prevent>
         <div class="row">

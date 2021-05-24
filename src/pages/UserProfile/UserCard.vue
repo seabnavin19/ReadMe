@@ -5,11 +5,11 @@
     </div> -->
     <div>
       <div class="author">
-        <img class="avatar border-white" src="@/assets/img/faces/huameng.jpg" alt="...">
-        <h4 class="title">HuaMengLim
+        <img class="avatar border-white" src="@/assets/img/faces/face-1.jpg" alt="...">
+        <h4 class="title">{{user.name}}
           <br>
           <a href="#">
-            <small>@huamenglim</small>
+            <small>@{{user.name}}</small>
           </a>
         </h4>
       </div>
@@ -47,22 +47,10 @@ export default {
   data() {
     return {
       user:null,
+      details:[]
     
       // accountStatus: "Active",
-      details: [
-        {
-          title: this.user.age,
-          subTitle: "Age"
-        },
-        {
-          title: this.user.gender,
-          subTitle: "Gender"
-        },
-        {
-          title:"Active",
-          subTitle: "Status"
-        }
-      ]
+      
     };
   },
   methods: {
@@ -77,42 +65,51 @@ export default {
       }
     }
   },
+
   mounted() {
-    this.user=new User(19,"Male","userName")
-    // console.log(this.user.userName)
+    db.collection('Bank').get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+            
+              var i;
+              for(i in doc.data()){
+                // console.log(doc.data()[i])
+                // this.sdata=new Post(doc.data()[i].AccountId,doc.data()[i].name)
+                // this.postList.push(this.sdata)
+                
+                if(doc.data()[i].AccountId == this.$route.params.id){
+                  var customer = doc.data()[i]
+                  
+                  this.user=new User(customer.name,customer.Age,customer.Gender)
+                  this.details=[
+                        {
+                          title: this.user.age,
+                          subTitle: "Age"
+                        },
+                        {
+                          title: this.user.gender,
+                          subTitle: "Gender"
+                        },
+                        {
+                          title:"Active",
+                          subTitle: "Status"
+                        }
+                      ]
+                      break
+                  
+                }
+              }      
+            })
+          })
+   
+    // console.log(this.user.name, this.user.age, this.user.gender)
+    
+      // console.log(this.details)
     // if(this.$route.params.id){
     //   this.user.accountNumber = this.$route.params.id;
     // }
-    db.collection('Bank').get().then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-          
-            // console.log(doc.data())
-            var i;
-            var l=[]
-            for(i in doc.data()){
-              // console.log(doc.data()[i])
-              // this.sdata=new Post(doc.data()[i].AccountId,doc.data()[i].name)
-              // this.postList.push(this.sdata)
-              
-              if(doc.data()[i].AccountId == this.user.accountNumber){
-                var customer = doc.data()[i]
-                this.user.userName = customer.name
-                this.user.gender = customer.Gender
-                this.user.age = customer.Age
-                // this.numberOfProduct = customer.NumOfProducts
-                // this.balance = customer.Balance
-                // this.has_credit_card = customer.HasCrCard
-                // this.salary = customer.EstimatedSalary
-                // this.tenure = customer.Tenure
-
-                
-                // console.log
-              }
-            }      
-          })
-        })
-  }
-};
+      
+    }
+  };
 </script>
 <style>
 </style>
