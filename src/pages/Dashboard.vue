@@ -1,6 +1,7 @@
 <template>
   <div>
-
+  
+  
     <!--Stats cards-->
     
     <div  >
@@ -18,11 +19,14 @@
           </div>
         </stats-card>
       </div> -->
-      <form class="d-flex mb-5 ml-3 col-6 jumbotron ">
-        <input class="form-control me-2 border border-dark input-md " v-model="search" type="search" placeholder="Search Customer" aria-label="Search">
+      
+       <h4>Search For Customer</h4>
+      <div class="d-flex col-6 mb-3 ">
+       
+        <input class="form-control  border border-dark" v-model="search" type="search" placeholder="Search Customer" aria-label="Search">
         <div class="col-1"></div>
         <button class="btn btn-outline-success" type="submit" > Search</button>
-      </form>
+      </div>
     </div>
     
     <table class="table table-success table-striped h-25 ">
@@ -53,8 +57,10 @@
    
     <!--Charts hello-->
     <div class="row">
-    
+    <p class="h1">Customer Segmentation</p>
+  
     </div>
+    
 
     <!--Charts-->
     <div class="row fixed">
@@ -76,7 +82,7 @@
         </chart-card>
       </div> -->
 
-      <div class="col-md-6 col-12">
+      <!-- <div class="col-md-6 col-12">
         <chart-card title="Email Statistics"
                     sub-title="Last campaign performance"
                     :chart-data="preferencesChart.data"
@@ -89,13 +95,16 @@
             <i class="fa fa-circle text-warning"></i> Unsubscribe
           </div>
         </chart-card>
-      </div>
+      </div> -->
+     
 
-      <div class="col-md-6 col-12">
+      <!-- <div class="col-md-6 col-12">
+        
         <chart-card title="2015 Sales"
                     sub-title="All products including Taxes"
                     :chart-data="activityChart.data"
                     :chart-options="activityChart.options">
+          
           <span slot="footer">
             <i class="ti-check"></i> Data information certified
           </span>
@@ -104,6 +113,21 @@
             <i class="fa fa-circle text-warning"></i> BMW 5 Series
           </div>
         </chart-card>
+      </div> -->
+
+      <div class="col-md-6 col-xl-3" v-for="stats in statsCards" :key="stats.title">
+        <stats-card>
+          <div class="icon-big text-center" :class="`icon-${stats.type}`" slot="header">
+            <i :class="stats.icon"></i>
+          </div>
+          <div class="numbers" slot="content">
+            <p>{{stats.title}}</p>
+            {{stats.value}}
+          </div>
+          <div class="stats" slot="footer">
+            <i :class="stats.footerIcon"></i> {{stats.footerText}}
+          </div>
+        </stats-card>
       </div>
 
     </div>
@@ -113,7 +137,9 @@
 <script>
 import { StatsCard, ChartCard } from "@/components/index";
 import Chartist from 'chartist';
-import db from '../components/firebaseInit'
+import db from '../components/firebaseInit';
+import UserCard from "./UserProfile/UserCard.vue";
+
 
 
 
@@ -128,7 +154,9 @@ class Post {
 export default {
   components: {
     StatsCard,
-    ChartCard
+    ChartCard,
+     UserCard,
+    
   },
 
   computed: {
@@ -173,35 +201,19 @@ export default {
       statsCards: [
         {
           type: "warning",
-          icon: "ti-server",
-          title: "Capacity",
-          value: "105GB",
+          icon: "ti-user",
+          title: "Group 1",
+          value: "20 customers",
           footerText: "Updated now",
           footerIcon: "ti-reload"
         },
         {
           type: "success",
-          icon: "ti-wallet",
-          title: "Revenue",
-          value: "$1,345",
+          icon: "ti-user",
+          title: "Group 2",
+          value: "50 customers",
           footerText: "Last day",
           footerIcon: "ti-calendar"
-        },
-        {
-          type: "danger",
-          icon: "ti-pulse",
-          title: "Errors",
-          value: "23",
-          footerText: "In the last hour",
-          footerIcon: "ti-timer"
-        },
-        {
-          type: "info",
-          icon: "ti-twitter-alt",
-          title: "Followers",
-          value: "+45",
-          footerText: "Updated now",
-          footerIcon: "ti-reload"
         }
       ],
       usersChart: {

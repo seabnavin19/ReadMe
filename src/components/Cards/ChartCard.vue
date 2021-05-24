@@ -1,6 +1,9 @@
 <template>
   <card>
+    
     <template slot="header">
+      
+      
       <h4 v-if="$slots.title || title" class="card-title">
         <slot name="title">
           {{title}}
@@ -26,6 +29,7 @@
         </div>
       </div>
     </div>
+    
 
   </card>
 </template>
