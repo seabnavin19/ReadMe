@@ -162,7 +162,7 @@ export default {
   computed: {
     filteredList() {
       return this.postList.filter(post => {
-        console.log(post)
+        
         return post.id.toLowerCase().includes(this.search.toLowerCase())
       })
 

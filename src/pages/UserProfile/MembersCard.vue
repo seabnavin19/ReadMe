@@ -84,12 +84,12 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="number">Money of Transaction</label>
-        <input type="number" class="form-control" placeholder="Money of Transaction" v-model="user.moneyOfTransaction">
+        <input type="number" class="form-control" placeholder="Money of Transaction" v-model="moneyOfTransaction" >
       </div>
       <div class="form-group col-md-6">
         <label for="inputState">Service</label>
-        <select id="selectedService" class="form-control">
-          <option selected>Choose Service</option>
+        <select id="selectedService" class="form-control" v-model="selectedService">
+          <option selected  >Choose Service</option>
           <option>OTT</option>
           <option>ITT</option>
           <option>Water Bill</option>
@@ -97,13 +97,20 @@
           <option>Other Services</option>
         </select>
       </div>
+      
     </div>
     <div class="form-row">
       <div class="form-group col-md 6">
         <label>Calculated Confession Fee</label>
-        <input type="number" class="form-control" placeholder="Confession Fee" v-model="user.calculatedFee">
+        <input type="number" class="form-control" placeholder="Confession Fee" v-model="calculatedFee">
       </div>
+      
+      
     </div>
+    <div class="row">
+        <button type="submit" class="btn btn-primary" @click="getStatusClass(selectedService)">submit</button>
+      </div>
+   
     <!-- <div>
       <ul class="list-unstyled team-members">
         <li>
@@ -131,30 +138,100 @@
       </ul>
     </div> -->
   </card>
+  
 </template>
 <script>
+import db from "../../components/firebaseInit"
+
 export default {
+
   data() {
     return {
-      user:{
-        moneyOfTransaction : null,
-        serviceChosen: null,
-        calculatedFee: null,
-        fixedOTT: null,
-        fixedITT: null,
-        
+     
+        moneyOfTransaction :null,
 
+        selectedService: null,
+        calculatedFee: null,
+
+      OTT:{
+        minFee:null,
+        maxFee:null,
+        comFee:null
+      },
+      ITT:{
+        minFee:null,
+        maxFee:null,
+        comFee:null
+      },
+      Bill:{
+        comFee:null
       }
     };
   },
+  mounted() {
+    
+    db.collection('Bank').get().then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+          
+            console.log(doc)
+            var i;
+            var l=[]
+            for(i in doc.data()){
+              // console.log(doc.data()[i])
+              // this.sdata=new Post(doc.data()[i].AccountId,doc.data()[i].name)
+              // this.postList.push(this.sdata)
+              
+              if(doc.data()[i].AccountId == this.$route.params.id){
+                var customer = doc.data()[i].OTT
+                this.OTT.minFee=customer.Min_Fee
+                this.OTT.maxFee=customer.Max_Fee
+                this.OTT.comFee=customer.comision
+
+                var customer1 = doc.data()[i].ITT
+                this.ITT.minFee=customer1.Min_Fee
+                this.ITT.maxFee=customer1.Max_Fee
+                this.ITT.comFee=customer1.comision
+
+                
+                
+
+                
+                // console.log
+              }
+
+
+            }
+            
+
+            
+      
+          })
+        })
+     
+  
+   
+  },
   methods: {
-    getFee(mOT){
-      this.user.calculatedFee = this.user.fixedOTT
+    getFee(money,com,min,max){
+      console.log(com)
+      this.calculatedFee = money*com
+      if(this.calculatedFee<=min){
+        this.calculatedFee=min
+      }
+      return this.calculatedFee
+      
     },
+    me(){
+      console.log(this.selectedService)
+      return this.selectedService
+      
+    },
+    
     getStatusClass(selectedService) {
+      
       switch (selectedService) {
         case "OTT":
-          return this.getFee(this.user.moneyOfTransaction);
+          return this.getFee(this.moneyOfTransaction,this.OTT.comFee/100,this.OTT.minFee,this.OTT.maxFee);
         case "ITT":
           return this.getFee(this.user,moneyOfTransaction);
         case "Water Bill":
