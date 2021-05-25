@@ -230,6 +230,7 @@ export default {
                 this.user.has_credit_card = customer.HasCrCard 
                 this.user.salary = customer.EstimatedSalary
                 this.user.tenure = customer.Tenure + " year"
+                break
 
                 
                 // console.log

@@ -2,19 +2,22 @@
  <div class="row">
    
     <div class="col-md-6 col-12">
+      <div slot="legend " class="m-5">
+            <i class="fa fa-circle text-info"></i> Open
+            <i class="fa fa-circle text-danger"></i> Bounce
+            <i class="fa fa-circle text-warning"></i> Unsubscribe
+          </div>
         <chart-card title="Gender"
                     sub-title="Last campaign performance"
                     :chart-data="preferencesChart.data"
                     chart-type="Pie">
           <span slot="footer">
             <i class="ti-timer"></i> Campaign set 2 days ago</span>
-          <div slot="legend">
-            <i class="fa fa-circle text-info"></i> Open
-            <i class="fa fa-circle text-danger"></i> Bounce
-            <i class="fa fa-circle text-warning"></i> Unsubscribe
-          </div>
+          
         </chart-card>
       </div>
+  
+
   
   
  </div>

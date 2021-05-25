@@ -28,6 +28,7 @@
         <button class="btn btn-outline-success" type="submit" > Search</button>
       </div>
     </div>
+  
     
     <table class="table table-success table-striped h-25 ">
   <thead >
@@ -38,7 +39,9 @@
       <th scope="col">Handle</th> -->
     </tr>
   </thead>
+  
   <tbody>
+   
        
     <tr v-for="(post,index) in filteredList" v-if="index<=5">
   
@@ -54,6 +57,18 @@
        
   </tbody>
 </table>
+ <div class="row " v-if="load">
+   <div class="col-5"></div>
+    <div class="spinner-grow text-succeess align-centre" role="status">
+  
+</div>
+<div class="spinner-grow text-secondary" role="status">
+
+</div>
+<div class="spinner-grow text-secondary" role="status">
+
+</div>
+  </div>
    
     <!--Charts hello-->
     <div class="row">
@@ -181,6 +196,7 @@ export default {
               this.sdata=new Post(doc.data()[i].AccountId,doc.data()[i].name)
               this.postList.push(this.sdata)
               console.log(i)
+              this.load=false
 
             }
             // this.sdata=doc.data()
@@ -196,6 +212,7 @@ export default {
    */
   data() {
     return {
+      load:true,
       sdata:'',
       
       statsCards: [

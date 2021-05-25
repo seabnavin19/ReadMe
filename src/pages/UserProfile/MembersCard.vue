@@ -129,6 +129,7 @@ export default {
                 this.ITT.minFee=customer1.Min_Fee
                 this.ITT.maxFee=customer1.Max_Fee
                 this.ITT.comFee=customer1.comision
+                break
 
               }
             }
