@@ -17,6 +17,7 @@
   </radial-progress-bar>
   </div>
   <div>
+    <h2>Services</h2>
     <div v-for="bar in bars" class="row m-5">
       <div class="col-sm-2">{{ bar.variant }}:</div>
       <div class="col-sm-10 pt-3">

@@ -71,3 +71,55 @@ textarea{
 }
 
 </style>
+<script>
+
+import db from '../components/firebaseInit';
+
+class Post {
+  constructor(id, name) {
+    this.id = id;
+    this.name = name
+    // this. = author;
+    // this.img = img;
+  }
+}
+
+export default {
+  data() {
+
+    return {
+     sdata=null,
+    
+    };
+  },
+
+  mounted() {
+    db.collection('Bank').get().then((querySnapshot) => {
+      
+          querySnapshot.forEach((doc) => {
+            // console.log(doc)
+         
+            var i;
+            var l=[]
+            for(i in doc.data()){
+              // console.log(doc.data()[i])
+              if(i.includes("user")){
+                 this.sdata=new Post(doc.data()[i].AccountId,doc.data()[i].name)
+               this.postList.push(this.sdata)
+              console.log(i)
+              }
+             
+              this.load=false
+              
+            }
+            // this.sdata=doc.data()
+            // console.log(this.sdata)
+
+            
+      
+          })
+        })
+  },
+
+};
+</script>

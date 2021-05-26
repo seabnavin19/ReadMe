@@ -1,5 +1,8 @@
 <template>
+<div>
+<analysis></analysis>
  <div class="row">
+   
    
     <div class="col-md-6 col-12">
       <div slot="legend " class="m-5">
@@ -17,12 +20,13 @@
         </chart-card>
 
       </div>
-      <analysis></analysis>
+      
   
 
   
   
  </div>
+</div>
 </template>
 <script>
 import { StatsCard, ChartCard } from "@/components/index";
