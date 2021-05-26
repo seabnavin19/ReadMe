@@ -226,6 +226,7 @@ export default {
                 this.user.username = customer.name
                 // this.user.gender = customer.Gender
                 // this.user.age = customer.Age
+                this.user.group = customer.Group
                 this.user.numberOfProduct = customer.NumOfProducts
                 this.user.balance = customer.Balance + " $"
                 this.user.has_credit_card = customer.HasCrCard 
