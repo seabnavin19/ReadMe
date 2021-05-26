@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <div class="container-fluid d-flex flex-wrap justify-content-between">
+    <!-- <div class="container-fluid d-flex flex-wrap justify-content-between">
       <nav>
         <ul>
           <li>
@@ -14,7 +14,7 @@
         <a href="https://github.com/cristijora" target="_blank"> &nbsp; Cristi Jora.</a>&nbsp;
         Designed by <a href="https://www.creative-tim.com/?ref=pdf-vuejs" target="_blank">&nbsp; Creative Tim.</a>
       </div>
-    </div>
+    </div> -->
   </footer>
 </template>
 <script>
