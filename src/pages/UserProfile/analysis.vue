@@ -1,10 +1,26 @@
 <template>
 <card >
   <div>
-    <div v-for="bar in bars" class="row mb-1">
+    <h2>
+      Predictive Analysis
+    </h2>
+  </div>
+  <div class="p-5 row">
+    <div class="col-3"></div>
+  <radial-progress-bar  :diameter="200"
+                       :completed-steps="completedSteps"
+                       :total-steps="totalSteps"
+                       :innerStrokeColor="ffffff">
+                      
+  <h2>Churn</h2>
+  <h4>10%</h4>
+  </radial-progress-bar>
+  </div>
+  <div>
+    <div v-for="bar in bars" class="row m-5">
       <div class="col-sm-2">{{ bar.variant }}:</div>
-      <div class="col-sm-10 pt-1">
-        <b-progress :value="bar.value" :variant="bar.variant" :key="bar.variant"></b-progress>
+      <div class="col-sm-10 pt-3">
+        <b-progress :value="bar.value" :variant="bar.variant" :key="bar.variant" ></b-progress>
       </div>
     </div>
   </div>
@@ -13,26 +29,27 @@
 
 <script>
 import Card from '../../components/Cards/Card.vue'
+import RadialProgressBar from 'vue-radial-progress'
   export default {
-  components: { Card },
+  components: { 
+    Card ,
+    RadialProgressBar
+  },
     data() {
       return {
+        completedSteps: 1,
+      totalSteps: 10,
         bars: [
           { variant: 'success', value: 75 },
           { variant: 'info', value: 75 },
           { variant: 'warning', value: 75 },
           { variant: 'danger', value: 75 },
-          { variant: 'primary', value: 75 },
-          { variant: 'secondary', value: 75 },
-          { variant: 'dark', value: 75 }
         ],
         timer: null
       }
     },
     mounted() {
-      this.timer = setInterval(() => {
-        this.bars.forEach(bar => (bar.value = 25 + Math.random() * 75))
-      }, 2000)
+      
     },
     beforeDestroy() {
       clearInterval(this.timer)

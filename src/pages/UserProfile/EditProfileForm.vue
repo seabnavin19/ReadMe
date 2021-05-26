@@ -211,6 +211,7 @@ export default {
     }
     db.collection('Bank').get().then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
+            
           
             console.log(doc)
             var i;

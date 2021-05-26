@@ -188,16 +188,22 @@ export default {
   },
   mounted() {
     db.collection('Bank').get().then((querySnapshot) => {
+      
           querySnapshot.forEach((doc) => {
+            // console.log(doc)
+         
             var i;
             var l=[]
             for(i in doc.data()){
-              console.log(doc.data()[i])
-              this.sdata=new Post(doc.data()[i].AccountId,doc.data()[i].name)
-              this.postList.push(this.sdata)
+              // console.log(doc.data()[i])
+              if(i.includes("user")){
+                 this.sdata=new Post(doc.data()[i].AccountId,doc.data()[i].name)
+               this.postList.push(this.sdata)
               console.log(i)
+              }
+             
               this.load=false
-
+              
             }
             // this.sdata=doc.data()
             // console.log(this.sdata)
@@ -220,7 +226,7 @@ export default {
           type: "warning",
           icon: "ti-user",
           title: "Group 1",
-          value: "20 customers",
+          value: "1178 customers",
           footerText: "Updated now",
           footerIcon: "ti-reload"
         },
@@ -228,9 +234,16 @@ export default {
           type: "success",
           icon: "ti-user",
           title: "Group 2",
-          value: "50 customers",
+          value: "782 customers",
           footerText: "Last day",
           footerIcon: "ti-calendar"
+        },{
+          type: "primary",
+          icon: "ti-user",
+          title: "Group 1",
+          value: "987 customers",
+          footerText: "Updated now",
+          footerIcon: "ti-reload"
         }
       ],
       usersChart: {

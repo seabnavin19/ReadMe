@@ -15,7 +15,9 @@
             <i class="ti-timer"></i> Campaign set 2 days ago</span>
           
         </chart-card>
+
       </div>
+      <analysis></analysis>
   
 
   
@@ -26,6 +28,7 @@
 import { StatsCard, ChartCard } from "@/components/index";
 import Chartist from 'chartist';
 import db from '../components/firebaseInit';
+import analysis from "./UserProfile/analysis.vue"
 
 export default {
   data() {
@@ -42,6 +45,7 @@ export default {
   },
   components: {
     StatsCard,
+    analysis,
     ChartCard },
 
 };
