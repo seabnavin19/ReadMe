@@ -74,11 +74,12 @@ import db from "../../components/firebaseInit"
             for(i in doc.data()){
               if(doc.data()[i].AccountId == this.accountNumber){
                 var customer = doc.data()[i]
-                this.group = customer.Group
+                this.group = parseInt(customer.Group) +1 
+                console.log(this.group)
                 break
               }
-                
-              if ("Group"+this.group == i){
+
+              if (i == "Group"+this.group ){
                 console.log(i)
                 console.log('Group'+this.group)
                 var user = doc.data()[i].Service
