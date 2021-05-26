@@ -40,9 +40,9 @@ import RadialProgressBar from 'vue-radial-progress'
         completedSteps: 1,
       totalSteps: 10,
         bars: [
-          { variant: 'success', value: 75 },
-          { variant: 'info', value: 75 },
-          { variant: 'warning', value: 75 },
+          { variant: 'Home Loan', value: 75 },
+          { variant: 'Personal Loan', value: 75 },
+          { variant: 'One Card', value: 75 },
           { variant: 'danger', value: 75 },
         ],
         timer: null
