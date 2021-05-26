@@ -19,12 +19,12 @@ const routes = [
     children: [
       {
         path: "dashboard",
-        name: "Personalization",
+        name: "dashboard",
         component: Dashboard
       },
       {
         path: "stats",
-        name: "Customer Profile",
+        name: "stats",
         component: UserProfile
       },
       {
